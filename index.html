@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .header {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .file-upload-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        body {
+            transition: background-color 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to the thrillcomicscenes</h1>
+    </div>
+    <div class="welcome-section">
+        <h2>You are welcome to this website</h2>
+        <p>This website is the official website of the thrillthronegaming YouTube channel. Here, we will upload our latest comics and provide information about our new videos. People can also post their stories, videos, and funny incidents. We will promote social media artists here.</p>
+    </div>
+    <div class="file-upload-section">
+        <h2>File Upload</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+            <input type="file" id="file-input" name="file" accept=".jpg, .jpeg, .png, .gif, .txt, .pdf, .mp4" required>
+            <button type="submit">Upload File</button>
+        </form>
+        <ul id="file-ul"></ul>
+    </div>
+    <button id="home-button" onclick="window.location.href='https://your-homepage-url.com'">Home</button>
+    <script>
+        // Background color change every minute
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeBackgroundColor() {
+            document.body.style.backgroundColor = getRandomColor();
+        }
+
+        setInterval(changeBackgroundColor, 60000);
+
+        // File upload handling
+        document.getElementById("upload-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const fileInput = document.getElementById("file-input");
+            const fileList = document.getElementById("file-ul");
+            const file = fileInput.files[0];
+
+            if (file) {
+                const listItem = document.createElement("li");
+                listItem.textContent = file.name;
+                fileList.appendChild(listItem);
+                fileInput.value = "";
+                // You can add further processing here for file storage.
+            }
+        });
+    </script>
+</body>
+</html>
